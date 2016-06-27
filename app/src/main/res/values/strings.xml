@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">AndroidLab</string>
+    <string name="helloText">Hello World!</string>
+    <string name="helloText2">Good Morning</string>
+    <string name="helloText3">Hello Text 3</string>
+</resources>
