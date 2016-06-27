@@ -5,11 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.multicampus.androidlab.R;
 
-public class ImageViewActivity extends AppCompatActivity {
+public class ButtonEditTextActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ch04_activity_image_view);
+        setContentView(R.layout.ch04_activity_button_edit_text);
     }
 }

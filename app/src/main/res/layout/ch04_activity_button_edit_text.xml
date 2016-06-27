@@ -7,26 +7,15 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.multicampus.androidlab.ch04.ImageViewActivity"
+    tools:context="com.multicampus.androidlab.ch04.ButtonEditTextActivity"
     android:orientation="vertical">
 
-    <ImageView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/korandoc"/>
-
-    <ImageView
-        android:layout_width="match_parent"
+        android:text="@string/intputHere"/>
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/korandoc"
-        android:maxWidth="200px"
-        android:maxHeight="100px"
-        android:adjustViewBounds="true"/>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/dog"
-        android:tint="#80FF0000"/>
-
+        android:text="@string/complete"/>
 </LinearLayout>

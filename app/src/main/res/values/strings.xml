@@ -3,4 +3,6 @@
     <string name="helloText">Hello World!</string>
     <string name="helloText2">Good Morning</string>
     <string name="helloText3">Hello Text 3</string>
+    <string name="intputHere">Input Here</string>
+    <string name="complete">Complete</string>
 </resources>

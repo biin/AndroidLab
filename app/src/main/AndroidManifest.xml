@@ -15,7 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ch04.TextViewActivity"></activity>
+        <activity android:name=".ch04.TextViewActivity" />
+        <activity android:name=".ch04.ImageViewActivity" />
+        <activity android:name=".ch04.ButtonEditTextActivity"></activity>
     </application>
 
 </manifest>
