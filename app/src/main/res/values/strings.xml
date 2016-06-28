@@ -5,4 +5,7 @@
     <string name="helloText3">Hello Text 3</string>
     <string name="intputHere">Input Here</string>
     <string name="complete">Complete</string>
+    <string name="toolbar">Tool Bar</string>
+    <string name="content">Content</string>
+    <string name="menubar">Menu Bar</string>
 </resources>

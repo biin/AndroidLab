@@ -7,19 +7,23 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.multicampus.androidlab.ch04.ButtonEditTextActivity"
+    tools:context="com.multicampus.androidlab.ch05.LayoutWeightActivity"
     android:orientation="vertical">
 
-    <EditText
+    <Button
         android:layout_width="match_parent"
-        android:layout_height="0px"
-        android:text="@string/intputHere"
-        android:gravity="top"
+        android:layout_height="wrap_content"
+        android:text="@string/toolbar"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/content"
         android:layout_weight="1"/>
     <Button
-        android:layout_width="300px"
-        android:layout_height="150px"
-        android:text="@string/complete"
-        android:layout_gravity="center_horizontal"
-        android:gravity="bottom|right"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/menubar"
+        />
+
 </LinearLayout>

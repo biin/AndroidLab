@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.multicampus.androidlab.ch05.RelativeLayoutAcitivity">
+
+    <TextView
+        android:id="@+id/chulsoo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="50px"
+        android:text="철수"/>
+    <TextView
+        android:id="@+id/younghee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30px"
+        android:text="영희"
+        android:layout_toRightOf="@+id/chulsoo"
+        android:layout_marginLeft="20px"
+        />
+    <TextView
+        android:id="@+id/mongryong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="50px"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/chulsoo"
+        android:text="몽룡"/>
+    <TextView
+        android:id="@+id/chunhyang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30px"
+        android:layout_toLeftOf="@+id/mongryong"
+        android:layout_alignBottom="@+id/mongryong"
+        android:layout_marginRight="20px"
+        android:text="춘향"/>
+</RelativeLayout>

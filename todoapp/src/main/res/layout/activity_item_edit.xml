@@ -3,35 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:padding="@dimen/activity_horizontal_margin"
     tools:context="com.multicampus.todoapp.ItemEditActivity"
     android:orientation="vertical">
 
     <EditText
+        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="스승님께 안부 전화하기 010-2222-2222. 꽃바구니 준비하기 http://flower.com 이메일 보내기 youngbin@gmail.com"
+        android:layout_weight="1"
+        android:gravity="top"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        >
 
         <Button
+            android:id="@+id/btnSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btn_save"
             android:layout_weight="1"/>
         <Button
+            android:id="@+id/btnCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btn_cancel"
             android:layout_weight="1"/>
         <Button
+            android:id="@+id/btnList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btn_list"
