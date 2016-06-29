@@ -11,8 +11,10 @@
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="스승님께 안부 전화하기 010-2222-2222. 꽃바구니 준비하기 http://flower.com 이메일 보내기 youngbin@gmail.com"
+        android:autoLink="all"
+        android:text="스승님께 안부 전화하기 010-222-2222. 꽃바구니 준비하기 http://flower.com 이메일 보내기 youngbin@gmail.com"
         android:layout_weight="1"
+        style="@style/ToDoStyle"
         />
 
     <LinearLayout

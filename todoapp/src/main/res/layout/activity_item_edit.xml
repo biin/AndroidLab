@@ -7,6 +7,12 @@
     tools:context="com.multicampus.todoapp.ItemEditActivity"
     android:orientation="vertical">
 
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/important"
+        />
+
     <EditText
         android:id="@+id/content"
         android:layout_width="match_parent"

@@ -6,4 +6,11 @@
     android:padding="@dimen/activity_horizontal_margin"
     tools:context="com.multicampus.todoapp.ItemListActivity">
 
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerHeight="2px"
+        />
+
 </RelativeLayout>

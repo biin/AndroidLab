@@ -3,6 +3,9 @@ package com.multicampus.todoapp;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -50,5 +53,37 @@ public class ItemViewActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        // configure menu
+
+        // by Coding
+        //menu.add(0, 0, 0, R.string.share);
+        //menu.add(0, 1, 0, R.string.delete);
+
+        //by xml : inflater 사용
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.item_view, menu);
+
+
+        return true; // true : 만들어서 바로 보여줌, false: 그냥 만들기만 하고 보여주지 않음
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        switch (item.getItemId()){
+            case R.id.share:
+                    Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
+                    break;
+            case R.id.delete:
+                    Toast.makeText(this, "Delete", Toast.LENGTH_SHORT).show();
+                    break;
+        }
+        return true;
     }
 }
