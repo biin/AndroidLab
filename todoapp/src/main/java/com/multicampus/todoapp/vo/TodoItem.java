@@ -1,9 +1,11 @@
-package com.multicampus.todoapp;
+package com.multicampus.todoapp.vo;
+
+import java.io.Serializable;
 
 /**
  * Created by student on 2016-06-29.
  */
-public class TodoItem {
+public class TodoItem implements Serializable{
 
     private int todoId;
     private String title;

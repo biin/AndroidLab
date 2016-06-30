@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TitleTextView">
+        <attr name="complete" format="boolean|string"></attr>
+        <attr name="completeLineColor" format="color"></attr>
+        <attr name="completeLineWidth" format="dimension"></attr>
+    </declare-styleable>
+
+</resources>

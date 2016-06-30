@@ -5,14 +5,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
+import com.multicampus.androidlab.R;
+
 public class CustomViewActivity extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        CircleView cv = new CircleView(this);
-        setContentView(cv);
+
+
+//        CircleView cv = new CircleView(this);
+//        setContentView(cv);
+
+        setContentView(R.layout.ch07_activity_custom_view);
+
+        CircleView cv = (CircleView)findViewById(R.id.circle);
 
         CircleClickListener circleClickListener = new CircleClickListener();
 

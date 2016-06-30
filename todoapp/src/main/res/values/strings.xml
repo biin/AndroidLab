@@ -14,4 +14,10 @@
     <string name="setting">Setting</string>
     <string name="complete">Complete</string>
     <string name="important">Important</string>
+    <string name="cancel">Cancel</string>
+    <string name="cancel_complete">Cancel Complete</string>
+    <string name="add_item_title">Add Item</string>
+    <string name="add_item_msg">Enter a title.</string>
+    <string name="btn_confirm">Confirm</string>
+    <string name="choose_msg">Select a application to share.</string>
 </resources>

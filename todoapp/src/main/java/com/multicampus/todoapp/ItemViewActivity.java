@@ -1,5 +1,6 @@
 package com.multicampus.todoapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,11 +12,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.multicampus.todoapp.vo.TodoItem;
+
 public class ItemViewActivity extends AppCompatActivity {
 
     private TextView content;
     private Button btnEdit;
     private Button btnList;
+    private TodoItem todoItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,13 +28,18 @@ public class ItemViewActivity extends AppCompatActivity {
 
         setView();
         setEvent();
-
     }
 
     private void setView(){
         content = (TextView)findViewById(R.id.content);
         btnEdit = (Button)findViewById(R.id.btnEdit);
         btnList = (Button)findViewById(R.id.btnList);
+
+        Intent intent = getIntent();
+        todoItem = (TodoItem) intent.getSerializableExtra("item");
+
+        setTitle(todoItem.getTitle());
+        content.setText(todoItem.getContent());
     }
 
     private void setEvent(){
@@ -38,9 +47,13 @@ public class ItemViewActivity extends AppCompatActivity {
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ItemViewActivity.this, "Toast Edit Message", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ItemViewActivity.this, "Toast Edit Message", Toast.LENGTH_SHORT).show();
                 Log.d("TodoApp", "btnEdit Clicked!!!");
 
+                Intent intent = new Intent(ItemViewActivity.this, ItemEditActivity.class);
+                intent.putExtra(Intent.EXTRA_TITLE, todoItem.getTitle());
+                intent.putExtra(Intent.EXTRA_TEXT, todoItem.getContent());
+                startActivity(intent);
 
             }
         });
@@ -48,8 +61,10 @@ public class ItemViewActivity extends AppCompatActivity {
         btnList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ItemViewActivity.this, "Toast List Message", Toast.LENGTH_LONG).show();
+//                Toast.makeText(ItemViewActivity.this, "Toast List Message", Toast.LENGTH_LONG).show();
                 Log.e(ItemViewActivity.class.getName(), "btnList Clicked!!!");
+                Intent intent = new Intent(ItemViewActivity.this, ItemListActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -78,11 +93,20 @@ public class ItemViewActivity extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.share:
-                    Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
-                    break;
+//                    Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+//                intent.setType("application/zip");
+//                startActivity(intent);
+
+                intent.putExtra(Intent.EXTRA_TITLE, todoItem.getTitle());
+                intent.putExtra(Intent.EXTRA_TEXT, todoItem.getContent());
+
+                startActivity(Intent.createChooser(intent, "Select a application to share." ));
+                break;
             case R.id.delete:
-                    Toast.makeText(this, "Delete", Toast.LENGTH_SHORT).show();
-                    break;
+                Toast.makeText(this, "Delete", Toast.LENGTH_SHORT).show();
+                break;
         }
         return true;
     }
