@@ -40,6 +40,9 @@ public class ItemViewActivity extends AppCompatActivity {
 
         setTitle(todoItem.getTitle());
         content.setText(todoItem.getContent());
+
+        //"\n"
+
     }
 
     private void setEvent(){

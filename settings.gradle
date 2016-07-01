@@ -1,1 +1,1 @@
-include ':app', ':todoapp', ':todobrowser'
+include ':app', ':todoapp', ':todobrowser', ':exam'
