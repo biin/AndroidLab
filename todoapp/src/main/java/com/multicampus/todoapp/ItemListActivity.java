@@ -3,6 +3,7 @@ package com.multicampus.todoapp;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -36,20 +37,29 @@ public class ItemListActivity extends AppCompatActivity {
     private ListView listView;
     private ArrayList<TodoItem> data;
     private int contextTargetPosition;
+    private DBHandler dbHandler;
+    private int mPosition;
+    private int mScrollY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
 
+//        setDb();
         setView();
         setEvent();
         init();
     }
 
+    private void setDb(){
+        DBHandler dbHandler = DBHandler.open(this);
+    }
+
     private void setView(){
         listView = (ListView) findViewById(R.id.listView);
     }
+
     private void setEvent(){
 
         registerForContextMenu(listView);
@@ -73,7 +83,9 @@ public class ItemListActivity extends AppCompatActivity {
 //        makeStringTodoList();
 //        makeXmlStringTodoList();
 //        makeMapTodoList();
-        makeTodoList();
+//        makeTodoList();
+        makeTodoListFromDB();
+
     }
 
 
@@ -123,19 +135,39 @@ public class ItemListActivity extends AppCompatActivity {
 
     private void completeItem(TodoItem item, boolean complete){
         item.setComplete(complete);
-        Toast.makeText(this, "Cancel", Toast.LENGTH_SHORT).show();
+
         // TODO DB 상태값 변경 작업 추가
+        DBHandler dbHandler = DBHandler.open(this);
+        dbHandler.updateComplete(item.getTodoId(), complete);
+        dbHandler.close();
+
+        Toast.makeText(this, complete ? "Completed" : "Cancel Complete", Toast.LENGTH_SHORT).show();
     }
 
     private void removeItem(TodoItem item){
         data.remove(item);
-        Toast.makeText(this, "Delete", Toast.LENGTH_SHORT).show();
 
-        // TODO DB에서 삭제하는 작업 추가
+        DBHandler dbHandler = DBHandler.open(this);
+        dbHandler.delete(item.getTodoId());
+        dbHandler.close();
+
+        Toast.makeText(this, "Removed", Toast.LENGTH_SHORT).show();
     }
 
     private void refreshList(){
         ((BaseAdapter)listView.getAdapter()).notifyDataSetChanged();
+    }
+
+    private void getListScrollInfo() {
+        mPosition = listView.getFirstVisiblePosition();
+
+        View v = listView.getChildAt(0);
+        if(v != null)
+            mScrollY = (int) v.getTop();
+        else
+            mScrollY = 0;
+
+        Log.i("mPosition", "" + mPosition + "," + mScrollY);
     }
 
     private void addItem(TodoItem item){
@@ -145,6 +177,7 @@ public class ItemListActivity extends AppCompatActivity {
         data.add(item);
         // TODO DB에 추가하는 작업 추가
 
+        dbHandler.insert(lastItem);
         refreshList();
     }
 
@@ -190,7 +223,6 @@ public class ItemListActivity extends AppCompatActivity {
                                 Intent intent = new Intent(ItemListActivity.this, ItemEditActivity.class);
                                 intent.putExtra(Intent.EXTRA_TITLE, title);
                                 startActivity(intent);
-
                             }
                         })
                         .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -266,6 +298,19 @@ public class ItemListActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
 
+    private void makeTodoListFromDB(){
+
+        data = getTodoListFromDB();
+        TodoItemAdapter adapter = new TodoItemAdapter(
+                this,
+                data,
+                R.layout.list_todo_item
+        );
+
+        listView.setAdapter(adapter);
+    }
+
+
     /*
     * ArrayList로 만든 리스트 데이터 반환
     * */
@@ -315,6 +360,41 @@ public class ItemListActivity extends AppCompatActivity {
         TodoItem todo = new TodoItem(101, "Sample Todo", "This is map sample data. Delete and use.");
         list.add(todo);
         return list;
+    }
+
+    private ArrayList<TodoItem> getTodoListFromDB(){
+
+        ArrayList<TodoItem> list = new ArrayList<TodoItem>();
+        DBHandler dbHandler = DBHandler.open(this);
+        Cursor cursor = dbHandler.selectAll();
+        while(cursor.moveToNext()){
+            int todoId = cursor.getInt(cursor.getColumnIndex("_id"));
+            String title = cursor.getString(cursor.getColumnIndex("title"));
+            String content = cursor.getString(cursor.getColumnIndex("content"));
+            boolean important = cursor.getInt(cursor.getColumnIndex("important")) == 1 ? true : false;
+            boolean complete = cursor.getInt(cursor.getColumnIndex("complete")) == 1 ? true : false;
+
+            TodoItem todoItem = new TodoItem(todoId, title, content, complete, important);
+            list.add(todoItem);
+        }
+
+        return list;
+    }
+
+    @Override
+    protected void onResume() {
+        Log.d("List - LifeCycle", "3. onResume");
+        super.onResume();
+        getListScrollInfo();
+        makeTodoListFromDB();
+        listView.setSelectionFromTop(mPosition, mScrollY);
+    }
+
+    @Override
+    protected void onRestart() {
+        Log.d("List -LifeCycle", "1.5 onRestart");
+        super.onRestart();
+//        refreshList();
     }
 
 }

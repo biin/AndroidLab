@@ -5,48 +5,47 @@
     android:layout_height="match_parent"
     android:padding="@dimen/activity_horizontal_margin"
     tools:context="com.multicampus.todoapp.ItemEditActivity"
-    android:orientation="vertical">
-
-    <CheckBox
-        android:id="@+id/checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/important"
-        />
+    android:orientation="horizontal">
 
     <EditText
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="top"
         />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal"
-        >
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        >
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/important"
+            />
         <Button
             android:id="@+id/btnSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btn_save"
-            android:layout_weight="1"/>
+            />
         <Button
             android:id="@+id/btnCancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btn_cancel"
-            android:layout_weight="1"/>
+            />
         <Button
             android:id="@+id/btnList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/btn_list"
-            android:layout_weight="1"/>
+            />
 
     </LinearLayout>
 

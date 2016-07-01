@@ -101,11 +101,17 @@ public class ItemViewActivity extends AppCompatActivity {
 
                 intent.putExtra(Intent.EXTRA_TITLE, todoItem.getTitle());
                 intent.putExtra(Intent.EXTRA_TEXT, todoItem.getContent());
+                intent.putExtra("important", todoItem.isImportant());
 
                 startActivity(Intent.createChooser(intent, "Select a application to share." ));
                 break;
             case R.id.delete:
-                Toast.makeText(this, "Delete", Toast.LENGTH_SHORT).show();
+
+                DBHandler dbHandler = DBHandler.open(this);
+                dbHandler.delete(todoItem.getTodoId());
+                dbHandler.close();
+
+                Toast.makeText(this, "Removed", Toast.LENGTH_SHORT).show();
                 break;
         }
         return true;
